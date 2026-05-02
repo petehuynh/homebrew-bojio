@@ -2,7 +2,8 @@ cask "bojio-edge" do
   version "0.1.0"
   sha256 "a2d249894f48ce817fed464b5e57847cf62ee8eb75c180bc4acf0a9fc4b0b6d3"
 
-  url "https://github.com/petehuynh/bojio/releases/download/edge-v#{version}/Bojio-Edge_#{version}_aarch64.dmg"
+  url "https://bojio.net/aetheria/edge/download/Bojio-Edge_#{version}_aarch64.dmg",
+      header: "Authorization: Bearer #{ENV.fetch('AETHER_TOKEN', '')}"
   name "Bojio-Edge"
   desc "Distributed LLM inference node for the Aetheria network"
   homepage "https://bojio.net"
