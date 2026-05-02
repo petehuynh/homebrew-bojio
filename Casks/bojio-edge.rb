@@ -1,0 +1,27 @@
+cask "bojio-edge" do
+  version "0.1.0"
+  sha256 "PLACEHOLDER"
+
+  url "https://github.com/petehuynh/bojio/releases/download/edge-v#{version}/Bojio-Edge_#{version}_aarch64.dmg"
+  name "Bojio-Edge"
+  desc "Distributed LLM inference node for the Aetheria network"
+  homepage "https://bojio.net"
+
+  depends_on arch: :arm64
+  depends_on macos: ">= :monterey"
+
+  app "Bojio-Edge.app"
+
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-cr", "#{appdir}/Bojio-Edge.app"],
+                   sudo: false
+  end
+
+  zap trash: [
+    "~/Library/Application Support/net.bojio.edge",
+    "~/Library/Caches/net.bojio.edge",
+    "~/Library/Preferences/net.bojio.edge.plist",
+    "~/Library/Saved Application State/net.bojio.edge.savedState",
+  ]
+end
